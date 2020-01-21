@@ -1,41 +1,81 @@
 # Python Sample Authoring Guide
 
-We're happy you want to write a Python sample! Like a lot of Pythonistas, we're opinationed and fussy. This guide is a reference for the format and style expected of samples contributed to the [python-docs-samples](https://github.com/GoogleCloudPlatform/python-docs-samples) repo. The guidelines below are intended to assure that all Python samples meet the following goals:
+We're happy you want to write a Python sample! Like a lot of Pythonistas,
+we're opinationed and fussy. This guide is a reference for the format and
+style expected of samples contributed to the
+[python-docs-samples](https://github.com/GoogleCloudPlatform/python-docs-samples)
+repo. The guidelines below are intended to ensure that all Python samples
+meet the following goals:
 
-* **Copy-paste-runnable.** A developer should be able to copy and paste the code into their own environment and run it with as few modifications as possible.
-* **Teach through code.** Each sample should demonstrate best practices for interacting with Google Cloud libraries, APIs, or services.
-* **Idiomatic.** Each sample should follow widely accepted Python best practices as covered below.
+* **Copy-paste-runnable.** A developer should be able to copy and paste the
+code into their own environment and run it with as few modifications as
+possible.
+* **Teach through code.** Each sample should demonstrate best practices for
+interacting with Google Cloud libraries, APIs, or services.
+* **Idiomatic.** Each sample should follow widely accepted Python best
+practices as covered below.
 
 # Sample Guidelines
 
-This section covers guidelines for Python samples. Note that [Testing Guidelines](#testing-guidelines) are covered separately below.
+This section covers guidelines for Python samples. Note that
+[Testing Guidelines](#testing-guidelines) are covered separately below.
 
 ## Folder Location
 
-Each sample should be in a folder under the top-level folder of [python-docs-samples](https://github.com/GoogleCloudPlatform/python-docs-samples) that corresponds to the Google Cloud service or API used by the sample. For example, a sample demonstrating how to work with BigTable should be in a subfolder under the [python-docs-samples/bigtable](https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/bigtable) folder.
+Each sample should be in a folder under the top-level folder of
+[python-docs-samples](https://github.com/GoogleCloudPlatform/python-docs-samples)
+that corresponds to the Google Cloud service or API used by the sample.
+For example, a sample demonstrating how to work with BigTable should be
+in a subfolder under the
+[python-docs-samples/bigtable](https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/bigtable)
+folder.
 
-Conceptually related samples under a service or API should be grouped into a subfolder. For example, App Engine Standard samples are under the [appengine/standard](https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/appengine/standard) folder, and App Engine Flex samples are under the [appengine/flexible](https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/appengine/flexible) folder.
+Conceptually related samples under a service or API should be grouped into
+a subfolder. For example, App Engine Standard samples are under the
+[appengine/standard](https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/appengine/standard)
+folder, and App Engine Flex samples are under the
+[appengine/flexible](https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/appengine/flexible)
+folder.
 
-If your sample is a set of discrete code snippets that each demonstrate a single operation, these should be grouped into a `snippets` folder. For example, see the snippets in the [bigtable/snippets/writes](https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/bigtable/snippets/writes) folder.
+If your sample is a set of discrete code snippets that each demonstrate a
+single operation, these should be grouped into a `snippets` folder. For
+example, see the snippets in the
+[bigtable/snippets/writes](https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/bigtable/snippets/writes)
+folder.
 
-If your sample is a quickstart — intended to demonstrate how to quickly get started with using a service or API — it should be in a _quickstart_ folder.
+If your sample is a quickstart — intended to demonstrate how to quickly get
+started with using a service or API — it should be in a _quickstart_ folder.
 
 ## Python Version
 
-As of this writing (early 2020), the default Python version for samples is Python 3.6. All samples should pass tests on 3.6, and support for 3.7 and 3.8 is recommended.
+As of this writing (early 2020), the default Python version for samples is
+Python 3.6. All samples should pass tests on 3.6, and support for 3.7 and
+3.8 is recommended.
 
-Support for Python 2.7 is no longer required for new samples. If you’re making a change to an existing sample that supports Python 2.7, the preferred approach is to maintain compatibility with 2.7.
+Support for Python 2.7 is no longer required for new samples. If you’re
+making a change to an existing sample that supports Python 2.7, the preferred
+approach is to maintain compatibility with 2.7.
 
-If the API or service your sample works with has specific Python version requirements different from those mentioned above, the sample should support those requirements. For example, the current Python version for App Engine Standard is Python 3.7, so samples for App Engine Standard must support Python 3.7.
+If the API or service your sample works with has specific Python version
+requirements different from those mentioned above, the sample should support
+those requirements. For example, the current Python version for App Engine
+Standard is Python 3.7, so samples for App Engine Standard must support
+Python 3.7.
 
 ## License Header
 
-Source code files should always begin with an Apache 2.0 license header. See the instructions in the repo license file on [how to apply the Apache license to your work](https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/LICENSE#L178-L201). For example, see the license header for the [Datastore client quickstart sample](https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/datastore/cloud-client/quickstart.py#L1-L15).
+Source code files should always begin with an Apache 2.0 license header. See
+the instructions in the repo license file on [how to apply the Apache license
+to your work](https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/LICENSE#L178-L201).
+For example, see the license header for the [Datastore client quickstart
+sample](https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/datastore/cloud-client/quickstart.py#L1-L15).
 
 ## Shebang
 
-If, and only if, your sample application is a command-line application, then include a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) as the first line. Separate the shebang line from the rest of
-the application with a blank line. The shebang line for a Python application should always be:
+If, and only if, your sample application is a command-line application, then
+include a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) as the
+first line. Separate the shebang line from the rest of the application with
+a blank line. The shebang line for a Python application should always be:
 
 ```python
 #!/usr/bin/env python
@@ -45,13 +85,31 @@ Don't include shebang lines in web applications or test files.
 
 ## Coding Style
 
-All Python samples should follow the best practices defined in the [PEP 8 style guide](https://www.python.org/dev/peps/pep-0008/) and the [Google Python Style Guide](http://google.github.io/styleguide/pyguide.html). The automated linting process for Python samples uses [flake8](http://flake8.pycqa.org/en/latest/) to verify conformance to common Python coding standards, so the use of flake8 is recommended.
+All Python samples should follow the best practices defined in the
+[PEP 8 style guide](https://www.python.org/dev/peps/pep-0008/) and the
+[Google Python Style Guide](http://google.github.io/styleguide/pyguide.html).
+The automated linting process for Python samples uses
+[flake8](http://flake8.pycqa.org/en/latest/) to verify conformance to common
+Python coding standards, so the use of flake8 is recommended.
 
-If you prefer to use [pylint](https://www.pylint.org/), that’s fine. But note that Python samples for this repo are not required to conform to pylint’s default settings outside the scope of PEP 8, such as the “too many arguments” or “too many local variables” warnings.
+If you prefer to use [pylint](https://www.pylint.org/), note that Python
+samples for this repo are not required to conform to pylint’s default settings
+outside the scope of PEP 8, such as the “too many arguments” or “too many
+local variables” warnings.
 
-The use of [Black](https://pypi.org/project/black/) to standardize code formatting and simplify diffs is recommended, but optional.
+The use of [Black](https://pypi.org/project/black/) to standardize code
+formatting and simplify diffs is recommended, but optional.
 
-In addition to the syntax guidelines covered in PEP 8, samples should strive to follow the Pythonic philosophy outlined in the [PEP 20 - Zen of Python](https://www.python.org/dev/peps/pep-0020/) as well as the readability tenets presented in Donald Knuth's _[Literate Programming](https://en.wikipedia.org/wiki/Literate_programming)_. Notably, your sample program should be self-contained, readable from top to bottom, and fairly self-documenting. Prefer descriptive names, and use comments and docstrings only as needed to further clarify the code’s intent. Always introduce functions and variables before they are used. Prefer less indirection. Prefer imperative programming as it is easier to understand.
+In addition to the syntax guidelines covered in PEP 8, samples should strive
+to follow the Pythonic philosophy outlined in the
+[PEP 20 - Zen of Python](https://www.python.org/dev/peps/pep-0020/) as well
+as the readability tenets presented in Donald Knuth's
+_[Literate Programming](https://en.wikipedia.org/wiki/Literate_programming)_.
+Notably, your sample program should be self-contained, readable from top to
+bottom, and fairly self-documenting. Prefer descriptive names, and use
+comments and docstrings only as needed to further clarify the code’s intent.
+Always introduce functions and variables before they are used. Prefer less
+indirection. Prefer imperative programming as it is easier to understand.
 
 ## Functions and Classes
 
@@ -120,8 +178,8 @@ def download_encrypted_blob(
 
 Note the verbose parameter names and the extended description that helps the
 user form context. If there were more parameters or if the parameters had
-complex context, then it might make sense to expand the docstring to include an
-`Args` section such as:
+complex context, then it might make sense to expand the docstring to include
+an `Args` section such as:
 
 ```
 Args:
@@ -133,31 +191,39 @@ Args:
 ```
 
 Generally, however, it's rarely necessary to exhaustively document the
-parameters this way. Lean towards unsurprising arguments with descriptive names,
-as having to resort to this kind of docstring might be extremely accurate but
-it comes at the cost of high redundancy, signal-to-noise ratio, and increased
-cognitive load.
+parameters this way. Lean towards unsurprising arguments with descriptive
+names, as having to resort to this kind of docstring might be extremely
+accurate but it comes at the cost of high redundancy, signal-to-noise ratio,
+and increased cognitive load.
 
 Finally, if absolutely necessary, feel free to document the type for the
 parameters, for example:
 
 ```
 Args:
-    credentials (google.oauth2.credentials.Credentials): Credentials authorized
-      for the current user.
+    credentials (google.oauth2.credentials.Credentials): Credentials
+      authorized for the current user.
 ```
 
 If documenting primitive types, be sure to note if they have a particular set
-of constraints, for example `A base64-encoded string` or `Must be between 0 and
-10`.
+of constraints, for example `A base64-encoded string` or `Must be between 0
+and 10`.
 
 ## README File
 
-Each sample should have a `README.md` file that provides instructions for how to install, configure, and run the sample. Setup steps that cover creating Google Cloud projects and resources should link to appropriate pages in the [Google Cloud Documentation](https://cloud.google.com/docs/), to avoid duplication and simplify maintenance.
+Each sample should have a `README.md` file that provides instructions for how
+to install, configure, and run the sample. Setup steps that cover creating
+Google Cloud projects and resources should link to appropriate pages in the
+[Google Cloud Documentation](https://cloud.google.com/docs/), to avoid
+duplication and simplify maintenance.
 
 ## Dependencies
 
-Every sample should include a [requirements.txt](https://pip.pypa.io/en/stable/user_guide/#requirements-files) file that lists all of its dependencies, to enable others to re-create the environment that was used to create and test the sample. All dependencies should be pinned to a specific version, as in this example:
+Every sample should include a
+[requirements.txt](https://pip.pypa.io/en/stable/user_guide/#requirements-files)
+file that lists all of its dependencies, to enable others to re-create the
+environment that was used to create and test the sample. All dependencies
+should be pinned to a specific version, as in this example:
 
 ```
 Flask==1.1.1
@@ -165,63 +231,103 @@ PyMySQL==0.9.3
 SQLAlchemy==1.3.12
 ```
 
-If a sample has testing requirements that differ from its runtime requirements (such as dependencies on [pytest](http://pytest.org/en/latest/) or other testing libraries), the testing requirements may be listed in a separate `requirements-testing.txt` file instead of the main `requirements.txt` file.
+If a sample has testing requirements that differ from its runtime requirements
+(such as dependencies on [pytest](http://pytest.org/en/latest/) or other
+testing libraries), the testing requirements may be listed in a separate
+`requirements-testing.txt` file instead of the main `requirements.txt` file.
 
 ## Region Tags
 
-Sample code may be integrated into Google Cloud Documentation through the use of region tags, which are comments added to the source code to identify code blocks that correspond to specific topics covered in the documentation. For example, see [this sample](https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/cloud-sql/mysql/sqlalchemy/main.py) — the region tags are the comments that begin with `[START` or `[END`.
+Sample code may be integrated into Google Cloud Documentation through the use
+of region tags, which are comments added to the source code to identify code
+blocks that correspond to specific topics covered in the documentation. For
+example, see
+[this sample](https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/cloud-sql/mysql/sqlalchemy/main.py)
+— the region tags are the comments that begin with `[START` or `[END`.
 
-The use of region tags is beyond the scope of this document, but if you’re using region tags they should start after the source code header (license/copyright information), imports, and global configuration such as initializing constants.
+The use of region tags is beyond the scope of this document, but if you’re
+using region tags they should start after the source code header
+(license/copyright information), imports, and global configuration such as
+initializing constants.
 
 ## Exception Handling
 
-Sample code should use standard Python exception handling techniques as covered in the [Google Python Style Guide](http://google.github.io/styleguide/pyguide.html#24-exceptions).
+Sample code should use standard Python exception handling techniques as
+covered in the [Google Python Style
+Guide](http://google.github.io/styleguide/pyguide.html#24-exceptions).
 
 # Testing Guidelines
 
-Samples should include tests to verify that the sample runs correctly and generates the intended output. Follow these guidelines while writing your tests:
+Samples should include tests to verify that the sample runs correctly and
+generates the intended output. Follow these guidelines while writing your
+tests:
 
-* Use [pytest](https://docs.pytest.org/en/latest/)-style tests and plain asserts. Don't use `unittest`-style tests or `assertX` methods.
-* Whenever possible, tests should avoid taking a dependency on the precise output of APIs. For example, if a test is intended to verify a JSON payload returned from an endpoint, it should only check for the existence of the expected keys and values, and the test should continue to work correctly if other values are added to the response in a future version of the API.
-* Samples that use App Engine Standard should use the [App Engine testbed](https://cloud.google.com/appengine/docs/standard/python/refdocs/google.appengine.ext.testbed) for system testing, as shown in [this example](https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/appengine/standard/localtesting/datastore_test.py).
+* Use [pytest](https://docs.pytest.org/en/latest/)-style tests and plain
+asserts. Don't use `unittest`-style tests or `assertX` methods.
+* Whenever possible, tests should avoid taking a dependency on the precise
+output of APIs. For example, if a test is intended to verify a JSON payload
+returned from an endpoint, it should only check for the existence of the
+expected keys and values, and the test should continue to work correctly
+if other values are added to the response in a future version of the API.
+* Samples that use App Engine Standard should use the [App Engine
+testbed](https://cloud.google.com/appengine/docs/standard/python/refdocs/google.appengine.ext.testbed)
+for system testing, as shown in [this
+example](https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/appengine/standard/localtesting/datastore_test.py).
 * All tests should be independent of one another and order-independent.
 
 ## Arrange, Act, Assert
 
-Tests for samples should follow the “Arrange, Act, Assert” structure for unit tests:
+Tests for samples should follow the “Arrange, Act, Assert” structure for
+unit tests:
 
-* _Arrange_ — create and configure the components required for the test. Avoid nesting; prioritize readability and simplicity over efficiency.
-* _Act_ — execute the code to be tested, such as sending a request and receiving a response.
+* _Arrange_ — create and configure the components required for the test.
+Avoid nesting; prioritize readability and simplicity over efficiency.
+* _Act_ — execute the code to be tested, such as sending a request and
+receiving a response.
 * _Assert_ — verify that the test results match what is expected.
 
 ## External Resources
 
-Whenever possible, tests should run against the live production version of cloud APIs and resources. This will assure that any breaking changes in those resources are identified by the tests.
+Whenever possible, tests should run against the live production version of
+cloud APIs and resources. This will assure that any breaking changes in those
+resources are identified by the tests.
 
-Creating mocks for external resources is optional, and not recommended in most cases.
+Creating mocks for external resources is optional, and not recommended in
+most cases.
 
 ## Temporary Resources
 
-When tests need temporary resources (such as a temp file or folder), they should create reasonable names for these resources with a UUID attached to assure uniqueness. All temporary resources should be explicitly deleted when testing is complete. 
+When tests need temporary resources (such as a temp file or folder), they
+should create reasonable names for these resources with a UUID attached to
+assure uniqueness. All temporary resources should be explicitly deleted when
+testing is complete. 
 
 ## Console Output
 
-If the sample prints output to the console, the test should capture stdout to a file and verify that the captured output contains the key information that is expected. Strive to verify the content of the output rather than the syntax. For example, the test might verify that a string is included in the output, without taking a dependency on where that string occurs in the output.
+If the sample prints output to the console, the test should capture stdout to
+a file and verify that the captured output contains the key information that
+is expected. Strive to verify the content of the output rather than the syntax.
+For example, the test might verify that a string is included in the output,
+without taking a dependency on where that string occurs in the output.
 
 ## Using nox
 
-Automated testing for samples in `python-docs-samples` is managed by [nox](https://nox.readthedocs.io). Nox allows us to run a variety of tests, including the flake8 linter, Python 2.7, Python 3.x, and App Engine tests, as well as automated README generation.
+Automated testing for samples in `python-docs-samples` is managed by
+[nox](https://nox.readthedocs.io). Nox allows us to run a variety of tests,
+including the flake8 linter, Python 2.7, Python 3.x, and App Engine tests,
+as well as automated README generation.
 
 To use nox, install it globally with `pip`:
 
-```
+```console
 $ pip install nox
 ```
 
-Nox automatically discovers all samples in the repository and generates three
-types of sessions for each sample:
+Nox automatically discovers all samples in the repository and generates
+three types of sessions for each sample:
 
-1. A test sessions (`gae`, `py27` and `py36`) for running the system tests against a specific Python version.
+1. A test sessions (`gae`, `py27` and `py36`) for running the system tests
+against a specific Python version.
 2. `lint` sessions for running the style linter.
 3. `readmegen` sessions for regenerating READMEs.
 
@@ -229,7 +335,7 @@ Because nox generates all of these sessions, it's often useful to filter down
 by just the sample you're working on. For example, if you just want to see
 which sessions are available for storage samples:
 
-```
+```console
 $ nox -k storage -l
 * gae(sample='./appengine/standard/storage/api-client')
 * gae(sample='./appengine/standard/storage/appengine-client')
@@ -250,25 +356,38 @@ $ nox -k storage -l
 * readmegen(sample='./storage/transfer_service')
 ```
 
-Now you can use nox to run a specific session, for example, if you want to lint
-the storage cloud-client samples:
+Now you can use nox to run a specific session, for example, if you want to
+lint the storage cloud-client samples:
 
-```
+```console
 $ nox -s "lint(sample='./storage/cloud-client')"
 ```
 
 ## Test Environment Setup
 
-Because all tests are system tests that use live resources, running tests requires a Google Cloud project with billing enabled, as covered under [Creating and Managing Projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
+Because all tests are system tests that use live resources, running tests
+requires a Google Cloud project with billing enabled, as covered under
+[Creating and Managing Projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
 
-Once you your project created and configured, you'll need to set environment variables to identify the project and resources to be used by tests. See [testing/test-env.tmpl.sh](https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/testing/test-env.tmpl.sh) for a list of all environment variables used by all tests. Not every test needs all of these variables.
+Once you your project created and configured, you'll need to set environment
+variables to identify the project and resources to be used by tests. See
+[testing/test-env.tmpl.sh](https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/testing/test-env.tmpl.sh)
+for a list of all environment variables used by all tests. Not every test
+needs all of these variables.
 
 ## Google Cloud Storage Resources
 
-Certain samples require integration with Google Cloud Storage (GCS), most commonly for APIs that read files from GCS. To run the tests for these samples, configure your GCS bucket name via the `CLOUD_STORAGE_BUCKET` environment variable.
+Certain samples require integration with Google Cloud Storage (GCS), most
+commonly for APIs that read files from GCS. To run the tests for these
+samples, configure your GCS bucket name via the `CLOUD_STORAGE_BUCKET`
+environment variable.
 
-The resources required by tests can usually be found in the `./resources` folder inside the sample directory, as in [this example](https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/automl/cloud-client/resources). You can upload those resources to your own GCS bucket to run the tests with [gsutil](https://cloud.google.com/storage/docs/gsutil). For example:
+The resources required by tests can usually be found in the `./resources`
+folder inside the sample directory, as in [this
+example](https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/automl/cloud-client/resources).
+You can upload those resources to your own GCS bucket to run the tests with
+[gsutil](https://cloud.google.com/storage/docs/gsutil). For example:
 
-```
+```console
 gsutil cp ./resources/* gs://$CLOUD_STORAGE_BUCKET/
 ```
