@@ -369,7 +369,7 @@ Because all tests are system tests that use live resources, running tests
 requires a Google Cloud project with billing enabled, as covered under
 [Creating and Managing Projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
 
-Once you your project created and configured, you'll need to set environment
+Once you have your project created and configured, you'll need to set environment
 variables to identify the project and resources to be used by tests. See
 [testing/test-env.tmpl.sh](https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/testing/test-env.tmpl.sh)
 for a list of all environment variables used by all tests. Not every test
