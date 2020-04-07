@@ -36,7 +36,8 @@ def instantiate_inline_workflow_template(project_id, region):
     # Create a client with the endpoint set to the desired region.
     workflow_template_client = dataproc.WorkflowTemplateServiceClient(
         client_options={
-            'api_endpoint': '{}-dataproc.googleapis.com:443'.format(region)}
+            'api_endpoint': '{}-dataproc.googleapis.com:443'.format(region)
+        }
     )
 
     parent = workflow_template_client.region_path(project_id, region)
@@ -94,11 +95,12 @@ def instantiate_inline_workflow_template(project_id, region):
     print('Workflow ran successfully.')
 
 
-if __name__ == "__main__":
-    if len(sys.arv) != 3:
-        print("INSUFFICIENT ARGS: Please provide a PROJECT_ID and REGION.")
-    else:
-        project_id = sys.argv[1]
-        region = sys.argv[2]
-        instantiate_inline_workflow_template(project_id, region)
+if __name__ == '__main__':
+    if len(sys.argv) < 3:
+        sys.exit('python instantiate_inline_workflow_template.py '
+                 + 'project_id region cluster_name')
+
+    project_id = sys.argv[1]
+    region = sys.argv[2]
+    instantiate_inline_workflow_template(project_id, region)
 # [END dataproc_instantiate_inline_workflow_template]

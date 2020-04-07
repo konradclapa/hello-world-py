@@ -39,7 +39,7 @@ def create_cluster(project_id, region, cluster_name):
 
     # Create a client with the endpoint set to the desired cluster region.
     cluster_client = dataproc.ClusterControllerClient(client_options={
-        'api_endpoint': '{}-dataproc.googleapis.com:443'.format(region),
+        'api_endpoint': '{}-dataproc.googleapis.com:443'.format(region)
     })
 
     # Create the cluster config.
@@ -66,13 +66,12 @@ def create_cluster(project_id, region, cluster_name):
     print('Cluster created successfully: {}'.format(result.cluster_name))
 
 
-if __name__ == "__main__":
-    if len(sys.arv) != 4:
-        print("INSUFFICIENT ARGS: Please provide a "
-              + "PROJECT_ID, REGION AND CLUSTER_NAME.")
-    else:
-        project_id = sys.argv[1]
-        region = sys.argv[2]
-        cluster_name = sys.argv[3]
-        create_cluster(project_id, region, cluster_name)
+if __name__ == '__main__':
+    if len(sys.argv) < 4:
+        sys.exit('python create_cluster.py project_id region cluster_name')
+
+    project_id = sys.argv[1]
+    region = sys.argv[2]
+    cluster_name = sys.argv[3]
+    create_cluster(project_id, region, cluster_name)
 # [END dataproc_create_cluster]
