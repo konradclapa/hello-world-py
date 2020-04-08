@@ -18,13 +18,11 @@
 # This script can be run on its own:
 #   python instantiate_inline_workflow_template.py ${PROJECT_ID} ${REGION}
 
-# [START dataproc_instantiate_inline_workflow_template]
 import sys
 
-from google.cloud import dataproc_v1 as dataproc
 
-
-def instantiate_inline_workflow_template(project_id, region):
+def instantiate_inline_workflow_template(project_id='PROJECT_ID',
+                                         region='REGION'):
     """This sample walks a user through submitting a workflow
        for a Cloud Dataproc using the Python client library.
 
@@ -32,6 +30,12 @@ def instantiate_inline_workflow_template(project_id, region):
            project_id (string): Project to use for running the workflow.
            region (string): Region where the workflow resources should live.
     """
+    # [START dataproc_instantiate_inline_workflow_template]
+    from google.cloud import dataproc_v1 as dataproc
+
+    # TODO(developer): Uncomment and set the following variables
+    # project_id = 'PROJECT_ID'
+    # region = 'REGION'
 
     # Create a client with the endpoint set to the desired region.
     workflow_template_client = dataproc.WorkflowTemplateServiceClient(
@@ -93,14 +97,16 @@ def instantiate_inline_workflow_template(project_id, region):
 
     # Output a success message.
     print('Workflow ran successfully.')
+    # [END dataproc_instantiate_inline_workflow_template]
 
-
-if __name__ == '__main__':
+def main(args=sys.argv):
     if len(sys.argv) < 3:
         sys.exit('python instantiate_inline_workflow_template.py '
-                 + 'project_id region cluster_name')
+                 + 'project_id region')
 
     project_id = sys.argv[1]
     region = sys.argv[2]
     instantiate_inline_workflow_template(project_id, region)
-# [END dataproc_instantiate_inline_workflow_template]
+
+if __name__ == '__main__':
+    main()
