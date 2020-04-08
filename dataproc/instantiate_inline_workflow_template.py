@@ -98,15 +98,7 @@ def instantiate_inline_workflow_template(project_id='PROJECT_ID',
     # Output a success message.
     print('Workflow ran successfully.')
     # [END dataproc_instantiate_inline_workflow_template]
-
-def main(args=sys.argv):
-    if len(sys.argv) < 3:
-        sys.exit('python instantiate_inline_workflow_template.py '
-                 + 'project_id region')
-
-    project_id = sys.argv[1]
-    region = sys.argv[2]
-    instantiate_inline_workflow_template(project_id, region)
+    
 
 if __name__ == '__main__':
-    main()
+    instantiate_inline_workflow_template(*sys.argv[1:3])
