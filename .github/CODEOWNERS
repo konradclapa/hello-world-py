@@ -62,3 +62,6 @@
 /translate/                     @nnegrey @telpirion @sirtorry @GoogleCloudPlatform/python-samples-owners
 /video/                         @nnegrey @telpirion @sirtorry @GoogleCloudPlatform/python-samples-owners
 /vision/                        @nnegrey @telpirion @sirtorry @GoogleCloudPlatform/python-samples-owners
+
+# Only tag @GoogleCloudPlatform/python-samples-owners for dependency updates
+requirements*.txt               @GoogleCloudPlatform/python-samples-owners
