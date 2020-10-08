@@ -15,8 +15,6 @@ This directory contains samples for [Google Cloud Run](https://cloud.run). [Clou
 |[Cloud Pub/Sub][pubsub] | Handling Pub/Sub push messages | [<img src="https://storage.googleapis.com/cloudrun/button.svg" alt="Run on Google Cloud" height="30">][run_button_pubsub] |
 |[Cloud SQL (MySQL)][mysql]        | Use MySQL with Cloud Run    |      -        |
 |[Cloud SQL (Postgres)][postgres]  | Use Postgres with Cloud Run |      -        |
-|[Events – Pub/Sub][events_pubsub]  | Event-driven service with Events for Cloud Run for Pub/Sub	|      -        |
-|[Events – GCS][events_storage]  | Event-driven service with Events for Cloud Run for GCS	 |      -        |
 
 For more Cloud Run samples beyond Python, see the main list in the [Cloud Run Samples repository](https://github.com/GoogleCloudPlatform/cloud-run-samples).
 
@@ -98,7 +96,7 @@ gcloud builds submit --tag gcr.io/${GOOGLE_CLOUD_PROJECT}/${SAMPLE}
 
 1. Deploy to Cloud Run
 ```
-gcloud beta run deploy $SAMPLE --image gcr.io/${GOOGLE_CLOUD_PROJECT}/${SAMPLE}
+gcloud run deploy $SAMPLE --image gcr.io/${GOOGLE_CLOUD_PROJECT}/${SAMPLE}
 ```
 
 See [Building containers][run_build] and [Deploying container images][run_deploy]
@@ -107,12 +105,10 @@ for more information.
 [run_docs]: https://cloud.google.com/run/docs/
 [run_build]: https://cloud.google.com/run/docs/building/containers
 [run_deploy]: https://cloud.google.com/run/docs/deploying
-[helloworld]: https://github.com/knative/docs/tree/master/docs/serving/samples/hello-world/helloworld-python
+[helloworld]: helloworld/
 [pubsub]: pubsub/
 [mysql]: ../cloud-sql/mysql/sqlalchemy
 [postgres]: ../cloud-sql/postgres/sqlalchemy
-[events_pubsub]: events-pubsub/
-[events_storage]: events-storage/
 [run_button_helloworld]: https://deploy.cloud.run/?git_repo=https://github.com/knative/docs&dir=docs/serving/samples/hello-world/helloworld-python
 [run_button_pubsub]: https://deploy.cloud.run/?git_repo=https://github.com/GoogleCloudPlatform/python-docs-samples&dir=run/pubsub
 [testing]: https://cloud.google.com/run/docs/testing/local#running_locally_using_docker_with_access_to_services

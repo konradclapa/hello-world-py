@@ -22,7 +22,15 @@ This section covers guidelines for Python samples. Note that
 
 ### Folder Location
 
-Each sample should be in a folder under the top-level folder of
+Samples that primarily show the use of one client library should be placed in the
+client library repository. Other samples should be placed in this repository
+`python-docs-samples`.
+
+**Library repositories:** Each sample should be in the top-level samples folder `samples`
+in the client library repository. See the [Text-to-Speech samples](https://github.com/googleapis/python-texttospeech/tree/master/samples)
+for an example.
+
+**python-docs-samples:** Each sample should be in a folder under the top-level folder of
 [python-docs-samples](https://github.com/GoogleCloudPlatform/python-docs-samples)
 that corresponds to the Google Cloud service or API used by the sample.
 For example, a sample demonstrating how to work with BigTable should be
@@ -91,6 +99,20 @@ local variables” warnings.
 
 The use of [Black](https://pypi.org/project/black/) to standardize code
 formatting and simplify diffs is recommended, but optional.
+
+The default noxfile has `blacken` session for convenience. Here are
+some examples.
+
+If you have pyenv configured:
+```sh
+nox -s blacken
+```
+
+If you only have docker:
+```
+cd proj_directory
+../scripts/run_tests_local.sh . blacken
+```
 
 In addition to the syntax guidelines covered in PEP 8, samples should strive
 to follow the Pythonic philosophy outlined in the
@@ -426,6 +448,62 @@ def test_resource():
     ...
 ```
 
+### Use filters with list methods
+
+When writing a test for a `list` method, consider filtering the possible results.
+Listing all resources in the test project may take a considerable amount of time.
+The exact way to do this depends on the API.
+
+Some `list` methods take a `filter`/`filter_` parameter:
+
+```python
+from datetime import datetime
+
+from google.cloud import logging_v2
+
+client = logging_v2.LoggingServiceV2Client()
+resource_names = [f"projects/{project}"]
+   # We add timestamp for making the query faster.
+    now = datetime.datetime.now(datetime.timezone.utc)
+    filter_date = now - datetime.timedelta(minutes=1)
+    filters = (
+        f"timestamp>=\"{filter_date.isoformat('T')}\" "
+        "resource.type=cloud_run_revision "
+        "AND severity=NOTICE "
+)
+
+entries = client.list_log_entries(resource_names, filter_=filters)
+
+```
+
+Others allow you to limit the result set with additional arguments
+to the request:
+
+```python
+from google.cloud import asset_v1p5beta1
+
+# TODO project_id = 'Your Google Cloud Project ID'
+# TODO asset_types = 'Your asset type list, e.g.,
+# ["storage.googleapis.com/Bucket","bigquery.googleapis.com/Table"]'
+# TODO page_size = 'Num of assets in one page, which must be between 1 and
+# 1000 (both inclusively)'
+
+project_resource = "projects/{}".format(project_id)
+content_type = asset_v1p5beta1.ContentType.RESOURCE
+client = asset_v1p5beta1.AssetServiceClient()
+
+# Call ListAssets v1p5beta1 to list assets.
+response = client.list_assets(
+    request={
+        "parent": project_resource,
+        "read_time": None,
+        "asset_types": asset_types,
+        "content_type": content_type,
+        "page_size": page_size,
+    }
+)
+```
+
 ### Test Environment Setup
 
 Because all tests are system tests that use live resources, running tests
@@ -472,15 +550,22 @@ Please read the [MAC Setup Guide](https://github.com/GoogleCloudPlatform/python-
 
 ### Running tests with nox
 
-Automated testing for samples in `python-docs-samples` is managed by
+Automated testing for samples is managed by
 [nox](https://nox.readthedocs.io). Nox allows us to run a variety of tests,
 including the flake8 linter, Python 2.7, Python 3.x, and App Engine tests,
 as well as automated README generation.
 
-__Note:__ As a temporary workaround, each project currently uses first
+__Note:__
+
+**Library repositories:** If you are working on an existing project, a `noxfile.py` will already exist.
+For new samples, create a new `noxfile.py` and paste the contents of
+[noxfile-template.py](https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/noxfile-template.py)
+
+**python-docs-samples:** As a temporary workaround, each project currently uses first
 `noxfile-template.py` found in a parent folder above the current sample. In
 order to simulate this locally, you need to copy + rename the parent
-`noxfile-template.py` as `noxfile.py` in the folder of the project (containing the `requirements.txt` for the file) you want to
+`noxfile-template.py` as `noxfile.py` in the folder of the project (containing the `requirements.txt` for the file).
+
 ```console
 cd python-docs-samples
 cp noxfile-template.py PATH/TO/YOUR/PROJECT/noxfile.py
@@ -515,6 +600,8 @@ nox -s py-3.7 -- snippets_test.py:test_list_blobs
 ```
 
 ### Running tests with Docker
+
+__Note__: This is currently only available for samples in `python-docs-samples`.
 
 If you have [Docker](https://www.docker.com) installed and runnable by
 the local user, you can use `scripts/run_tests_local.sh` helper script
